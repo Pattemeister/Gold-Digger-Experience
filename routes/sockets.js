@@ -52,7 +52,7 @@ exports.initialize = function (server) {
                     case States.START: {
                         if (message.message.indexOf("help") !=-1){
                             socket.send(JSON.stringify({type:'helpMessage',
-                            message:'There is a maximum of ' + (maxTurns-1) + ' turns in each game, and every command, except "help", will cost 1 turn. Spend them wise! Try to earn as much gold as possible. Hints will be given in messages on commands to use to explore the game'}));
+                            message:'There is a maximum of ' + maxTurns + ' turns in each game, and every command, except "help", will cost 1 turn. Spend them wise! Try to earn as much gold as possible. Hints will be given in messages on commands to use to explore the game'}));
                             socket.send(JSON.stringify({type:'helpMessage',
                             message:'You can always go ahead and try to "explore" the mountain, or restart the game by typing "restart"'}));
                             turn--;
