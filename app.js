@@ -16,7 +16,8 @@ var app = express();
 /* fixed for Express 4.x according to 
    https://github.com/strongloop/express/wiki/Migrating-from-3.x-to-4.x
  */
-app.set('port', 3000);
+var server_port = process.env.OPENSHIFT_NODEJS_PORT||8080
+app.set('port', server_port);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -26,8 +27,13 @@ app.use(express.static(path.join(__dirname, 'public')));
   
 app.get('/', routes.index);
 
-var server = http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+
+
+var server_ip_adress = process.env.OPENSHIFT_NODEJS_IP||'127.0.0.1'
+
+
+var server = http.createServer(app).listen(server_port ,server_ip_adress, function(){
+  console.log("Listening on port " + server_ip_adress + app.get('port'));
 });
 
 require('./routes/sockets.js').initialize(server);
