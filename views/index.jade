@@ -1,0 +1,26 @@
+extends layout
+
+block append head
+      script(type='text/javascript', src='/socket.io/socket.io.js')
+      script(type='text/javascript', src='/javascripts/chat.js')
+
+block content
+  section#chatroom
+    div#infobox
+      h2 Infobox
+      h3#gold G
+      h4#multiplier M
+      h4#progress Turns used: 0
+      h4#topscore Top Score: 0
+    div#messages
+    input#message(type='text', placeholder='Enter your commands here')
+    input#send(type='button', value='Send')
+  section#nameform.modal
+    div.backdrop
+    div.popup
+      div.pophead Any pro gold digger should have a cool name!
+      div.popbody
+        input#nickname(type='text')
+        input#setname(type='button', value='Gimme my name!')
+      
+
